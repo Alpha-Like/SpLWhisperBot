@@ -28,19 +28,20 @@ async def inline(_, i):
     global ALPHA
     txt = i.query.lower()
     if not len(txt.split(None, 1)) == 2:
-        await _.answer_inline_query(i.id, result=res, cache_time=0)
+        await _.answer_inline_query(i.id, results=res, cache_time=0)
     try:
         id = int(txt[0])
     except:
         try:
             id = (await _.get_users(txt[0])).id
         except:
-            await _.answer_inline_query(i.id, result=res1, cache_time=0)
+            await _.answer_inline_query(i.id, results=res1, cache_time=0)
     Na = (await _.get_users(id)).first_name
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])
     res2 = [IQRA(title="Whisper", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
+    await _.answer_inline_query(i.id, results=res2, cache_time=0)
     ALPHA[[id, i.from_user.id]] = whisp
 
 @yashu.on_callback_query()

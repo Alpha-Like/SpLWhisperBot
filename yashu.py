@@ -36,7 +36,7 @@ async def inline(_, i):
             tar = (await _.get_users(txt[0])).id
         except:
             await _.answer_inline_query(i.id, results=res1, cache_time=0)
-    Na = (await _.get_users(id)).first_name
+    Na = (await _.get_users(tar)).first_name
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])

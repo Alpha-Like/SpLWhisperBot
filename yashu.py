@@ -26,14 +26,14 @@ res1 = [IQRA(title="Whisper", input_message_content=ITMC("Invalid Username or Id
 @yashu.on_inline_query()
 async def inline(_, i):
     global ALPHA
-    txt = i.query.lower()
+    txt = i.query
     if not len(txt.split(None, 1)) == 2:
         await _.answer_inline_query(i.id, results=res, cache_time=0)
     try:
-        tar = int(txt[0])
+        tar = int(txt.split()[0])
     except:
         try:
-            tar = (await _.get_users(txt[0])).id
+            tar = (await _.get_users(txt.split()[0])).id
         except:
             await _.answer_inline_query(i.id, results=res1, cache_time=0)
     Na = (await _.get_users(tar)).first_name

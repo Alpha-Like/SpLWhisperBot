@@ -1,6 +1,6 @@
 from pyrogram import Client, filters, idle
 from config import *
-from pyrogram.types import InlineQueryResultArticle as IQRA, InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM, InputMessageContent as IMC, InputTextMessageContent as ITMC
+from pyrogram.types import InlineQueryResultArticle as IQRA, InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM, InputTextMessageContent as ITMC
 
 yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -20,8 +20,8 @@ async def help(_, m):
     un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
 
-res = [IQRA(title="Whisper", input_message_content=IMC(ITMC("[USERNAME | ID] [WHISPER]")))]
-res1 = [IQRA(title="Whisper", input_message_content=IMC(ITMC("Invalid Username or Id !")))]
+res = [IQRA(title="Whisper", input_message_content=ITMC("[USERNAME | ID] [WHISPER]"))]
+res1 = [IQRA(title="Whisper", input_message_content=ITMC("Invalid Username or Id !"))]
 
 @yashu.on_inline_query()
 async def inline(_, i):
@@ -40,7 +40,7 @@ async def inline(_, i):
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])
-    res2 = [IQRA(title="Whisper", input_message_content=IMC(ITMC(WTXT.format(Na))), reply_markup=SHOW)]
+    res2 = [IQRA(title="Whisper", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
     ALPHA[[id, i.from_user.id]] = whisp
 
 @yashu.on_callback_query()

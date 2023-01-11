@@ -49,6 +49,7 @@ async def cbq(_, q):
     try:
         id = q.from_user.id
         mid = q.message.from_user.id
+        await q.message.reply(q.data)
         if q.data != f"{mid}_{id}":
             return await q.answer("This is not for you baka !", show_alert=True)
         try:

@@ -77,7 +77,11 @@ async def cbq(_, q):
     except Exception as e:
         await q.answer(str(e), show_alert=True)
 
+STXT = "Bot started successfully ✨🥀\n"
+STXT += "For queries and questions : @NotKeshav\n"
+STXT += "Join @SpLBots for community ✨☁️"
+
 yashu.start()
-print("Started !")
+print(STXT)
 idle()
     

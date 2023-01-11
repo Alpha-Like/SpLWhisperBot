@@ -14,4 +14,4 @@
 
 ## REQUIREMENTS
 
-» BOT TOKEN, GET IT FROM [BOTFATHER](https://t.me/BOTFATHER)
+» A Bot Token, Get it from [BotFather](https://t.me/BOTFATHER)

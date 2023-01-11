@@ -39,26 +39,25 @@ async def inline(_, i):
     Na = (await _.get_users(tar)).first_name
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
-    SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])
+    SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{tar}")]])
     res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
     await _.answer_inline_query(i.id, results=res2, cache_time=0)
-    ALPHA.update({i.from_user.id: {tar: whisp}})
+    ALPHA.update({f"{i.from_user.id}_{tar}": whisp})
 
 @yashu.on_callback_query()
-async def cbq(_, q):
+async def cbq(_, q: CBQ):
     try:
         id = q.from_user.id
-        mid = q.message.from_user.id
-        await q.message.reply(q.data)
-        if q.data != f"{mid}_{id}":
-            return await q.answer("This is not for you baka !", show_alert=True)
+        spl = q.data.split("_")
+        if id != int(spl[1]):
+          return await q.answer("This is not for you baka !", show_alert=True)
         try:
-            msg = ALPHA[str(mid)][str(id)] 
+            msg = ALPHA[q.data] 
         except:
             msg = "Whisper has been deleted from Database !"
         await q.answer(msg, show_alert=True)
     except Exception as e:
-        await q.message.reply(e)
+        q.answer(e, show_alert=True)
 
 yashu.start()
 print("Started !")

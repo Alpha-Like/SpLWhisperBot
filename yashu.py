@@ -29,7 +29,6 @@ async def help(_, m):
 
 BUN = None
 
-res = [IQRA(title="Whisper", description=f"@{BUN} ( USERNAME | ID ) ( TEXT )", input_message_content=ITMC(f"`@{BUN} ( USERNAME | ID ) ( TEXT )`"))]
 res1 = [IQRA(title="Whisper", description="Invalid Username or Id !", input_message_content=ITMC("Invalid Username or Id !"))]
 
 @yashu.on_inline_query()
@@ -37,6 +36,7 @@ async def inline(_, i):
     global ALPHA, BUN
     if not BUN:
         BUN = (await _.get_me()).username
+    res = [IQRA(title="Whisper", description=f"@{BUN} ( USERNAME | ID ) ( TEXT )", input_message_content=ITMC(f"`@{BUN} ( USERNAME | ID ) ( TEXT )`"))]
     txt = i.query
     if not len(txt.split(None, 1)) == 2:
         await _.answer_inline_query(i.id, results=res, cache_time=0)

@@ -55,7 +55,7 @@ async def inline(_, i):
     ALPHA[f"{i.from_user.id}_{tar}"] = whisp
 
 @yashu.on_callback_query()
-async def cbq(_, q: CBQ):
+async def cbq(_, q):
     try:
         id = q.from_user.id
         spl = q.data.split("_")

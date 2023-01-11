@@ -8,10 +8,12 @@ ALPHA = {}
 
 TXT = "Hello {} ! I'm {}, I can help you to send whispers in various modes !\n\nHit /help to know more !"
 
+SWITCH_PM = IKM([[IKB("Send Whisper ☁️", switch_inline_query="")]])
+
 @yashu.on_message(filters.command("start") & filters.private)
 async def start(_, m):
     na = (await _.get_me()).first_name
-    await m.reply(TXT.format(m.from_user.first_name, na))
+    await m.reply(TXT.format(m.from_user.first_name, na), reply_markup=SWITCH_PM)
 
 HLP = "**Whisper Bot**\n\n» @{} [USERNAME] [WHISPER]\n\nEx : `@{} @ShutupKeshav Hello !`"
 

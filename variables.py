@@ -5,3 +5,5 @@ BOT_TOKEN = " "
 START_PIC = " "
 
 # ENTER LINK OF PIC !
+
+# FOR GETTING LINK, GO TO @Spl_Levi_Ackerman_Bot, SEND PIC AND REPLY /telegraph

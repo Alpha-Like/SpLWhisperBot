@@ -11,3 +11,7 @@
 ## GITHUB
 
 » [NotKeshav](https://github.com/NotKeshav)
+
+## REQUIREMENTS
+
+» BOT TOKEN, GET IT FROM [BOTFATHER](https://t.me/BOTFATHER)

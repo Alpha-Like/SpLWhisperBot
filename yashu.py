@@ -46,15 +46,18 @@ async def inline(_, i):
 
 @yashu.on_callback_query()
 async def cbq(_, q):
-    id = q.from_user.id
-    mid = q.message.from_user.id
-    if q.data != f"{mid}_{id}":
-        return await q.answer("This is not for you baka !", show_alert=True)
     try:
-        msg = ALPHA[mid][id] 
-    except:
-        msg = "Whisper has been deleted from Database !"
-    await q.answer(msg, show_alert=True)
+        id = q.from_user.id
+        mid = q.message.from_user.id
+        if q.data != f"{mid}_{id}":
+            return await q.answer("This is not for you baka !", show_alert=True)
+        try:
+            msg = ALPHA[mid][id] 
+        except:
+            msg = "Whisper has been deleted from Database !"
+        await q.answer(msg, show_alert=True)
+    except Exception as e:
+        await q.message.reply(e)
 
 yashu.start()
 print("Started !")

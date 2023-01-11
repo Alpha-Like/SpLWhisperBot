@@ -6,7 +6,7 @@ yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TO
 
 ALPHA = {}
 
-TXT = "Hello {} ! I'm {}, I can help you to send whispers in various modes !\n\Hit /help to know more !"
+TXT = "Hello {} ! I'm {}, I can help you to send whispers in various modes !\n\nHit /help to know more !"
 
 @yashu.on_message(filters.command("start") & filters.private)
 async def start(_, m):
@@ -42,7 +42,7 @@ async def inline(_, i):
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])
     res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
     await _.answer_inline_query(i.id, results=res2, cache_time=0)
-    ALPHA[str(i.from_user.id)][str(tar)] = whisp
+    ALPHA.update({i.from_user.id: {tar: whisp}})
 
 @yashu.on_callback_query()
 async def cbq(_, q):

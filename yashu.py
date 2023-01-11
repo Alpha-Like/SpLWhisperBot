@@ -2,6 +2,9 @@ from pyrogram import Client, filters, idle
 from config import *
 from pyrogram.types import InlineQueryResultArticle as IQRA, InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM, InputTextMessageContent as ITMC
 
+if not BOT_TOKEN:
+    from bot_token import BOT_TOKEN
+
 yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 ALPHA = {}

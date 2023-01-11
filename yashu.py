@@ -40,7 +40,8 @@ async def inline(_, i):
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{tar}")]])
-    res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
+    SHOW_ONE = IKM([[IKB("One Time Whisper ☁️", callback_data=f"{i.from_user.id}_{tar}_one")]])
+    res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW), IQRA(title="Whisper", description=f"Send one time whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW_ONE)]
     await _.answer_inline_query(i.id, results=res2, cache_time=0)
     ALPHA.update({f"{i.from_user.id}_{tar}": whisp})
 
@@ -55,6 +56,9 @@ async def cbq(_, q: CBQ):
             msg = ALPHA[q.data] 
         except:
             msg = "Whisper has been deleted from Database !"
+        SWITCH = IKM([[IKB("Go Inline ☁️", switch_inline_query_current_chat="")]])
+        if spl[2] == "one":
+            await q.edit_message_text("Whisper has been read !\n\nPress below button to send whisper !", reply_markup=SWITCH)
         await q.answer(msg, show_alert=True)
     except Exception as e:
         q.answer(e, show_alert=True)

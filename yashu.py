@@ -43,7 +43,11 @@ async def inline(_, i):
     SHOW_ONE = IKM([[IKB("One Time Whisper ☁️", callback_data=f"{i.from_user.id}_{tar}_one")]])
     res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW), IQRA(title="Whisper", description=f"Send one time whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW_ONE)]
     await _.answer_inline_query(i.id, results=res2, cache_time=0)
-    ALPHA.update({f"{i.from_user.id}_{tar}": whisp})
+    try:
+      ALPHA.pop(f"{i.from_user.id}_{tar}")
+    except:
+      pass
+    ALPHA[f"{i.from_user.id}_{tar}"] = whisp
 
 @yashu.on_callback_query()
 async def cbq(_, q: CBQ):
@@ -52,16 +56,17 @@ async def cbq(_, q: CBQ):
         spl = q.data.split("_")
         if id != int(spl[1]):
           return await q.answer("This is not for you baka !", show_alert=True)
+        for_search = spl[0] + "_" + spl[1]
         try:
-            msg = ALPHA[q.data] 
+            msg = ALPHA[for_search] 
         except:
-            msg = "Whisper has been deleted from Database !"
+            msg = "Error ‼️\n\nWhisper has been deleted from Database !"
         SWITCH = IKM([[IKB("Go Inline ☁️", switch_inline_query_current_chat="")]])
+        await q.answer(msg, show_alert=True)
         if spl[2] == "one":
             await q.edit_message_text("Whisper has been read !\n\nPress below button to send whisper !", reply_markup=SWITCH)
-        await q.answer(msg, show_alert=True)
     except Exception as e:
-        q.answer(e, show_alert=True)
+        await q.answer(str(e), show_alert=True)
 
 yashu.start()
 print("Started !")

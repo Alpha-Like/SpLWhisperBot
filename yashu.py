@@ -18,19 +18,23 @@ async def start(_, m):
     na = (await _.get_me()).first_name
     await m.reply(TXT.format(m.from_user.first_name, na), reply_markup=SWITCH_PM)
 
-HLP = "**Whisper Bot**\n\n» @{} [USERNAME] [WHISPER]\n\nEx : `@{} @ShutupKeshav Hello !`"
+HLP = "**Whisper Bot Help**\n\n» `@{} [USERNAME] [WHISPER]`\n\nEx : `@{} @ShutupKeshav Hello !`"
 
 @yashu.on_message(filters.command("help") & filters.private)
 async def help(_, m):
     un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
 
-res = [IQRA(title="Whisper", description="[USERNAME | ID] [WHISPER]", input_message_content=ITMC("[USERNAME | ID] [WHISPER]"))]
+BUN = None
+
+res = [IQRA(title="Whisper", description=f"@{BUN} ( USERNAME | ID ) ( TEXT )", input_message_content=ITMC(f"`@{BUN} ( USERNAME | ID ) ( TEXT )`"))]
 res1 = [IQRA(title="Whisper", description="Invalid Username or Id !", input_message_content=ITMC("Invalid Username or Id !"))]
 
 @yashu.on_inline_query()
 async def inline(_, i):
-    global ALPHA
+    global ALPHA, BUN
+    if not BUN:
+        BUN = (await _.get_me()).username
     txt = i.query
     if not len(txt.split(None, 1)) == 2:
         await _.answer_inline_query(i.id, results=res, cache_time=0)

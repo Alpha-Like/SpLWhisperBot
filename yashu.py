@@ -20,8 +20,8 @@ async def help(_, m):
     un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
 
-res = [IQRA(title="Whisper", input_message_content=ITMC("[USERNAME | ID] [WHISPER]"))]
-res1 = [IQRA(title="Whisper", input_message_content=ITMC("Invalid Username or Id !"))]
+res = [IQRA(title="Whisper", description="[USERNAME | ID] [WHISPER]", input_message_content=ITMC("[USERNAME | ID] [WHISPER]"))]
+res1 = [IQRA(title="Whisper", description="Invalid Username or Id !", input_message_content=ITMC("Invalid Username or Id !"))]
 
 @yashu.on_inline_query()
 async def inline(_, i):
@@ -40,9 +40,9 @@ async def inline(_, i):
     whisp = txt.split(None, 1)[1]
     WTXT = "A whisper has been sent to {}.\n\nOnly he / she can open it."
     SHOW = IKM([[IKB("Whisper ☁️", callback_data=f"{i.from_user.id}_{id}")]])
-    res2 = [IQRA(title="Whisper", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
+    res2 = [IQRA(title="Whisper", description=f"Send a whisper to {Na} !", input_message_content=ITMC(WTXT.format(Na)), reply_markup=SHOW)]
     await _.answer_inline_query(i.id, results=res2, cache_time=0)
-    ALPHA[[tar, i.from_user.id]] = whisp
+    ALPHA[i.from_user.id][tar] = whisp
 
 @yashu.on_callback_query()
 async def cbq(_, q):
@@ -51,7 +51,7 @@ async def cbq(_, q):
     if q.data != f"{mid}_{id}":
         return await q.answer("This is not for you baka !", show_alert=True)
     try:
-        msg = ALPHA[[id, mid]]
+        msg = ALPHA[mid][id] 
     except:
         msg = "Whisper has been deleted from Database !"
     await q.answer(msg, show_alert=True)

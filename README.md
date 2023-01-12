@@ -26,7 +26,7 @@
 
 » Go to your VPS Terminal.
 
-# VPS COMMANDS
+### VPS COMMANDS
 
 » git clone < repo > wb
 

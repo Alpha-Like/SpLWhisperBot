@@ -16,4 +16,22 @@
 
 » A Bot Token, Get it from [BotFather](https://t.me/BOTFATHER)
 
+## VPS HOSTING
 
+» Star and Fork the Repo.
+
+» Fill BOT_TOKEN (compulsory) and START_PIC (optional) in variables.py
+
+» Copy your repo link.
+
+» Go to your VPS Terminal.
+
+# VPS COMMANDS
+
+» git clone < repo > wb
+
+» cd wb
+
+» pip install -r requirements.txt
+
+» python3 yashu.py

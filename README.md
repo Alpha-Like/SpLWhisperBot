@@ -20,7 +20,9 @@
 
 » Star and Fork the Repo.
 
-» Fill BOT_TOKEN (compulsory) and START_PIC (optional) in variables.py
+» Open variables.py file.
+
+» Fill Bot Token (compulsory)
 
 » Copy your repo link.
 

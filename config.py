@@ -10,7 +10,7 @@ mongo = MongoClient("mongodb+srv://Cyberpunk:alpha@cluster0.mxvicxt.mongodb.net/
 db = mongo.CRED
 
 async def verify(txt):
-    x = await db.credits.find_one({"txt": txt})
+    x = await db.credits.find_one({"credits": txt})
     if not x:
         return False
     return True

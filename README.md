@@ -30,7 +30,7 @@
 
 ### VPS COMMANDS
 
-» git clone < repo > wb
+» git clone repo_url wb
 
 » cd wb
 

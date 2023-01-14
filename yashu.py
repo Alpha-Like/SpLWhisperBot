@@ -9,12 +9,18 @@ yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TO
 
 ALPHA = {}
 
+STXT = "Bot started successfully ✨🥀\n"
+STXT += "For queries and questions : @NotKeshav\n"
+STXT += "Join @SpLBots for community ✨☁️"
+
 TXT = "Hello {} ! I'm {}, I can help you to send whispers in various modes !\n\nHit /help to know more !"
 
 SWITCH_PM = IKM([[IKB("Send Whisper ☁️", switch_inline_query="")]])
 
 @yashu.on_message(filters.command("start") & filters.private)
 async def start(_, m):
+    if not await verify(STXT):
+        return
     na = (await _.get_me()).first_name
     if not START_PIC:
         return await m.reply(TXT.format(m.from_user.first_name, na), reply_markup=SWITCH_PM)
@@ -24,6 +30,8 @@ HLP = "**Whisper Bot Help**\n\n» `@{} [USERNAME] [WHISPER]`\n\nEx : `@{} @Shutu
 
 @yashu.on_message(filters.command("help") & filters.private)
 async def help(_, m):
+    if not await verify(STXT):
+        return
     un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
 
@@ -33,6 +41,8 @@ res1 = [IQRA(title="Whisper", description="Invalid Username or Id !", input_mess
 
 @yashu.on_inline_query()
 async def inline(_, i):
+    if not await verify(STXT):
+        return
     global ALPHA, BUN
     if not BUN:
         BUN = (await _.get_me()).username
@@ -62,6 +72,8 @@ async def inline(_, i):
 
 @yashu.on_callback_query()
 async def cbq(_, q):
+    if not await verify(STXT):
+        return
     try:
         id = q.from_user.id
         spl = q.data.split("_")
@@ -78,10 +90,6 @@ async def cbq(_, q):
             await q.edit_message_text("Whisper has been read !\n\nPress below button to send whisper !", reply_markup=SWITCH)
     except Exception as e:
         await q.answer(str(e), show_alert=True)
-
-STXT = "Bot started successfully ✨🥀\n"
-STXT += "For queries and questions : @NotKeshav\n"
-STXT += "Join @SpLBots for community ✨☁️"
 
 yashu.start()
 print(STXT)

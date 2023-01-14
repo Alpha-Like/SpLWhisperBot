@@ -2,8 +2,7 @@ from pyrogram import Client, filters, idle
 from config import *
 from pyrogram.types import InlineQueryResultArticle as IQRA, InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM, InputTextMessageContent as ITMC
 
-if not BOT_TOKEN:
-    from variables import BOT_TOKEN, START_PIC
+from variables import BOT_TOKEN, START_PIC, SUPPORT_CHAT
 
 yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -15,7 +14,7 @@ STXT += "Join @SpLBots for community ✨☁️"
 
 TXT = "Hello {} ! I'm {}, I can help you to send whispers in various modes !\n\nHit /help to know more !"
 
-SWITCH_PM = IKM([[IKB("Send Whisper ☁️", switch_inline_query="")]])
+SWITCH_PM = IKM([[IKB("Send Whisper ☁️", switch_inline_query="")], [IKB("Support ✨☁️", url=f"t.me/{SUPPORT_CHAT}")]])
 
 @yashu.on_message(filters.command("start") & filters.private)
 async def start(_, m):

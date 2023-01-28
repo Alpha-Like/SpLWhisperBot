@@ -3,7 +3,9 @@ from config import *
 from pyrogram.types import InlineQueryResultArticle as IQRA, InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM, InputTextMessageContent as ITMC
 
 if not BOT_TOKEN:
-    from variables import BOT_TOKEN, START_PIC, SUPPORT_CHAT
+    from variables import BOT_TOKEN
+
+from variables import START_PIC, SUPPORT_CHAT
 
 yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 

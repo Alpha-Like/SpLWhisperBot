@@ -7,6 +7,18 @@ if not BOT_TOKEN:
 
 from variables import START_PIC, SUPPORT_CHAT
 
+try:
+    START_PIC = START_PIC.replace(" ", "")
+    SUPPORT_CHAT = SUPPORT_CHAT.replace(" ", "")
+except:
+    pass
+
+if not START_PIC:
+    START_PIC = "https://telegra.ph/file/f5bb442ce1fdcc48c57d7.jpg"
+
+if not SUPPORT_CHAT:
+    SUPPORT_CHAT = "Spoiled_Community"
+
 yashu = Client("WHISPER-BOT", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 ALPHA = {}

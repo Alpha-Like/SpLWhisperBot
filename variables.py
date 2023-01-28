@@ -12,5 +12,11 @@ SUPPORT_CHAT = " "
 
 # ENTER USERNAME OF SUPPORT GROUP OR CHANNEL WITHOUT @
 
+if not START_PIC:
+    START_PIC = "https://telegra.ph/file/f5bb442ce1fdcc48c57d7.jpg"
+
+if not SUPPORT_CHAT:
+    SUPPORT_CHAT = "Spoiled_Community"
+
 if SUPPORT_CHAT[0] == "@":
     SUPPORT_CHAT = SUPPORT_CHAT[1:]

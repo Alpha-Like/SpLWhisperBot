@@ -42,11 +42,15 @@ async def start(_, m):
 
 HLP = "**Whisper Bot Help**\n\n» `@{} [USERNAME] [WHISPER]`\n\nEx : `@{} @ShutupKeshav Hello !`"
 
+un = None
+
 @yashu.on_message(filters.command("help") & filters.private)
 async def help(_, m):
+    global un
     if not await verify(STXT):
         return
-    un = (await _.get_me()).username
+    if not un:
+        un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
 
 BUN = None

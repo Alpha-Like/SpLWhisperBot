@@ -10,4 +10,4 @@ COPY . /app
 
 CMD ["python3", "yashu.py"]
 
-EXPOSE
+EXPOSE 8080

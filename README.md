@@ -4,9 +4,9 @@
 
 ## CREDITS
 
-» [Dhanush](https://t.me/c_s_m_king)
+» [Dhanush](https://t.me/C_S_M_KING)
 
-» [Keshav](https://t.me/NotKeshav)
+» [Keshav](https://t.me/North_Yankton)
 
 ## GITHUB
 

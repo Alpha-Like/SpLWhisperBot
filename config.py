@@ -5,6 +5,3 @@ API_ID = e("API_ID", 13691707)
 API_HASH = e("API_HASH", "2a31b117896c5c7da27c74025aa602b8")
 
 BOT_TOKEN = e("BOT_TOKEN", None)
-
-mongo = MongoClient("mongodb+srv://Cyberpunk:alpha@cluster0.mxvicxt.mongodb.net/?retryWrites=true&w=majority")
-db = mongo.CRED

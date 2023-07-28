@@ -33,8 +33,6 @@ SWITCH_PM = IKM([[IKB("Send Whisper ☁️", switch_inline_query="")], [IKB("Sup
 
 @yashu.on_message(filters.command("start") & filters.private)
 async def start(_, m):
-    if not await verify(STXT):
-        return
     na = (await _.get_me()).first_name
     if not START_PIC:
         return await m.reply(TXT.format(m.from_user.first_name, na), reply_markup=SWITCH_PM)
@@ -47,8 +45,6 @@ un = None
 @yashu.on_message(filters.command("help") & filters.private)
 async def help(_, m):
     global un
-    if not await verify(STXT):
-        return
     if not un:
         un = (await _.get_me()).username
     await m.reply(HLP.format(un, un))
@@ -59,8 +55,6 @@ res1 = [IQRA(title="Whisper", description="Invalid Username or Id !", input_mess
 
 @yashu.on_inline_query()
 async def inline(_, i):
-    if not await verify(STXT):
-        return
     global ALPHA, BUN
     if not BUN:
         BUN = (await _.get_me()).username
@@ -90,8 +84,6 @@ async def inline(_, i):
 
 @yashu.on_callback_query()
 async def cbq(_, q):
-    if not await verify(STXT):
-        return
     try:
         id = q.from_user.id
         spl = q.data.split("_")

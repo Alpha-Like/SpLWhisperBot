@@ -8,9 +8,3 @@ BOT_TOKEN = e("BOT_TOKEN", None)
 
 mongo = MongoClient("mongodb+srv://Cyberpunk:alpha@cluster0.mxvicxt.mongodb.net/?retryWrites=true&w=majority")
 db = mongo.CRED
-
-async def verify(txt):
-    x = await db.credits.find_one({"credits": txt})
-    if not x:
-        return False
-    return True
